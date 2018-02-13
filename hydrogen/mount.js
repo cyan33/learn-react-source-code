@@ -18,8 +18,15 @@ function mountTextNode(text, node) {
   node.appendChild(text)
 }
 
-function mountCompositeNode(component, node) {
-  const componentNode = component.type(component.props)
+function mountComposite(component, node) {
+  let componentNode;
+  if (isClass(component.type)) {
+    const component = new component.type()
+    componentNode = component.mountComponent()
+  } else {
+    componentNode = component.type(component.props)
+  }
+
   // delegate to mount one level deeper
   mount(componentNode, node)
 }
