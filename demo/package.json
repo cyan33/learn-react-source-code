@@ -1,4 +1,6 @@
 {
+  "name": "dilithium-demo",
+  "version": "v0.0.1",
   "scripts": {
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch"

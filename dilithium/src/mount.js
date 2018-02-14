@@ -1,3 +1,7 @@
+const instantiateComponent = require('./instantiateComponent')
+const Reconciler = require('./Reconciler')
+const DOM = require('./DOM')
+
 function render(element, node) {
   // todo: add update
   mount(element, node)
@@ -8,7 +12,7 @@ function mount(element, node) {
   let renderedNode = Reconciler.mountComponent(component)
   
   DOM.empty(node)
-  DOM.appendChild(node, renderedNode)
+  DOM.appendChildren(node, renderedNode)
 }
 
 module.exports = {

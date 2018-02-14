@@ -3,12 +3,11 @@ const instantiateComponent = require('./instantiateComponent')
 const Reconciler = require('./Reconciler')
 
 class Component {
-  _renderedComponent = null
-  _renderedNode = null
-  _currentElement = null
-  
   constructor(props) {
     this.props = props
+    this._renderedComponent = null
+    this._renderedNode = null
+    this._currentElement = null
     assert(this.render)
   }
 
@@ -29,3 +28,5 @@ class Component {
     return renderedNode
   }
 }
+
+module.exports = Component

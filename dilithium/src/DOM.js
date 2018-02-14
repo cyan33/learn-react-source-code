@@ -3,11 +3,13 @@
  */
 
 function empty(node) {
-  [...node.childNodes].forEach(node.removeNode, node)
+  [].slice.call(node, node.childNodes).forEach(node.removeChild, node)
 }
 
 function updateStyles(node, styleObj) {
-  
+  Object.keys(styleObj).forEach((styleName) => {
+    node.style[styleName] = styleObj[styleName]
+  })
 }
 
 function setProperty(node, attr, value) {
@@ -19,8 +21,8 @@ function removeProperty(node, attr) {
   node.removeAttribute(attr);
 }
 
-function appendChildren(node, children) {
-  [...children].forEach((child) => node.appendChild(child))
+function appendChildren(node, ...children) {
+  children.forEach((child) => node.appendChild(child))
 }
 
 function removeChild(node, child) {
@@ -40,5 +42,6 @@ module.exports = {
   removeProperty,
   appendChildren,
   removeChild,
-  insertAfter
+  insertAfter,
+  updateStyles
 }

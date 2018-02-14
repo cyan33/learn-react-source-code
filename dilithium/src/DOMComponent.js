@@ -2,10 +2,10 @@ const MultiChild = require('./MultiChild')
 const DOM = require('./DOM')
 
 class DOMComponent extends MultiChild {
-  _domNode = null
   constructor(element) {
     super()
     this._currentElement = element
+    this._domNode = null
   }
 
   mountComponent() {
@@ -14,7 +14,9 @@ class DOMComponent extends MultiChild {
     this._domNode = node
 
     this._updateNodeProperties({}, this._currentElement.props)
-    this._createInitialDOMChildren()
+    this._createInitialDOMChildren(this._currentElement.props)
+
+    return node
   }
 
   _updateNodeProperties(prevProps, nextProps) {
@@ -33,8 +35,8 @@ class DOMComponent extends MultiChild {
 
     // update / add new attributes
     Object.keys(nextProps).forEach((propName) => {
-      let prevValue = prevProps[prop]
-      let nextValue = nextProps[prop]
+      let prevValue = prevProps[propName]
+      let nextValue = nextProps[propName]
 
       if (prevValue === nextValue)  return
 
@@ -51,9 +53,7 @@ class DOMComponent extends MultiChild {
     DOM.updateStyles(this._domNode, styleUpdates)
   }
 
-  _createInitialDOMChildren() {
-    const props = this._currentElement.props
-
+  _createInitialDOMChildren(props) {
     if (
       typeof props.children === 'string' ||
       typeof props.children === 'number'
@@ -67,3 +67,5 @@ class DOMComponent extends MultiChild {
     }
   }
 }
+
+module.exports = DOMComponent

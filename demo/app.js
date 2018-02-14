@@ -1,4 +1,4 @@
-import Dilithium from '../dilithium'
+const Dilithium = require('../dilithium')
 
 class App extends Dilithium.Component {
   render() {

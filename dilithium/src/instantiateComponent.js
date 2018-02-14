@@ -1,3 +1,5 @@
+const DOMComponent = require('./DOMComponent')
+
 /**
  * element => component
  */
@@ -10,7 +12,7 @@ function instantiateComponent(element) {
     // only supports class component for now
     componentInstance = new element.type(element.props)
     componentInstance._construct(element)
-  } else if (typeof element.type === string) {
+  } else if (typeof element.type === 'string') {
     componentInstance = new DOMComponent(element)
   } else if (typeof element === 'string' || typeof element === 'number') {
     componentInstance = new DOMComponent({

@@ -1,6 +1,6 @@
-const Element = require('./Element')
-const Component = require('./Component')
-const Mount = require('./mount')
+const Element = require('./src/Element')
+const Component = require('./src/Component')
+const Mount = require('./src/mount')
 
 module.exports = {
   createElement: Element.createElement,
