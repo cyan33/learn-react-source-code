@@ -32,5 +32,19 @@ function traverseAllChildrenImpl(
     return 1
   }
 
+  let subtreeCount = 0
+  const namePrefix = !nameSoFar ? SEPARATOR : nameSoFar + SUBSEPARATOR
 
+  children.forEach((child, i) => {
+    subtreeCount += traverseAllChildrenImpl(
+      child,
+      namePrefix + getComponentKey(child, i),
+      callback,
+      traverseContext
+    )
+  })
+
+  return subtreeCount
 }
+
+module.exports = traverseAllChildren

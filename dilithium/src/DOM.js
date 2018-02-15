@@ -21,8 +21,12 @@ function removeProperty(node, attr) {
   node.removeAttribute(attr);
 }
 
-function appendChildren(node, ...children) {
-  children.forEach((child) => node.appendChild(child))
+function appendChildren(node, children) {
+  if (Array.isArray(children)) {
+    children.forEach((child) => node.appendChild(child))
+  } else {
+    node.appendChild(children)
+  }
 }
 
 function removeChild(node, child) {

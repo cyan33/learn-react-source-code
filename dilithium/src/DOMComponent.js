@@ -62,8 +62,8 @@ class DOMComponent extends MultiChild {
       this._domNode.appendChild(textNode)
     } else if (props.children) {
       // Single element or Array
-      const mountImages = this.mountChildren(props.children);
-      DOM.appendChildren(this._domNode, mountImages);
+      const childrenNodes = this.mountChildren(props.children)
+      DOM.appendChildren(this._domNode, childrenNodes)
     }
   }
 }

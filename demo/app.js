@@ -3,7 +3,12 @@ const Dilithium = require('../dilithium')
 class App extends Dilithium.Component {
   render() {
     return (
-      <h1>Hello World</h1>
+      <div>
+        <div>
+          <h1>Hello Worlds</h1>
+        </div>
+        <h1>Hello World</h1>
+      </div>
     )
   }
 }

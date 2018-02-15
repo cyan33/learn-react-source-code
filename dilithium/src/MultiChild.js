@@ -1,4 +1,5 @@
 const ChildReconciler = require('./ChildReconciler')
+const Reconciler = require('./Reconciler')
 
 class MultiChild {
   constructor() {
@@ -16,7 +17,16 @@ class MultiChild {
     }
     */
 
-    // const childrenNodes = childrenComponents.
+    console.log('before mapping:', children)
+    console.log('after mapping:', childrenComponents)
+
+    const childrenNodes = Object.keys(childrenComponents).map((childKey) => {
+      const childComponent = childrenComponents[childKey]
+
+      return Reconciler.mountComponent(childComponent)
+    })
+
+    return childrenNodes
   }
 }
 

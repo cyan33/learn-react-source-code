@@ -8,7 +8,7 @@ function render(element, node) {
 }
 
 function mount(element, node) {
-  let component = instantiateComponent(element);
+  let component = instantiateComponent(element)
   let renderedNode = Reconciler.mountComponent(component)
   
   DOM.empty(node)
