@@ -54,6 +54,8 @@ class DOMComponent extends MultiChild {
   }
 
   _createInitialDOMChildren(props) {
+    // this is where we go into the children of the dom component and 
+    // recursively mount and append each of the childNode to the parent node
     if (
       typeof props.children === 'string' ||
       typeof props.children === 'number'

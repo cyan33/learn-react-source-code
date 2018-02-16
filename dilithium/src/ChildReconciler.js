@@ -1,7 +1,7 @@
 const traverseAllChildren = require('./traverseAllChildren')
 
 function instantiateChild(childInstances, child, name) {
-  // don't know wtf happened here, cannot resolve it at first time
+  // don't know wtf happened here, cannot resolve it at top level
   // hack it in
   const initiateComponent = require('./instantiateComponent')
 
