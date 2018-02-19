@@ -1,5 +1,6 @@
 const MultiChild = require('./MultiChild')
 const DOM = require('./DOM')
+const assert = require('./assert')
 
 class DOMComponent extends MultiChild {
   constructor(element) {
@@ -17,6 +18,16 @@ class DOMComponent extends MultiChild {
     this._createInitialDOMChildren(this._currentElement.props)
 
     return node
+  }
+
+  receiveComponent(nextElement) {
+    this.updateComponent(this._currentElement, nextElement)
+  }
+
+  updateComponent(prevElement, nextElement) {
+    this._currentElement = nextElement
+    this._updateNodeProperties(prevElement.props, nextElement.props)
+    this._updateDOMChildren(prevElement.props, nextElement.props)
   }
 
   _updateNodeProperties(prevProps, nextProps) {
@@ -66,6 +77,22 @@ class DOMComponent extends MultiChild {
       // Single element or Array
       const childrenNodes = this.mountChildren(props.children)
       DOM.appendChildren(this._domNode, childrenNodes)
+    }
+  }
+
+  _updateDOMChildren(prevProps, nextProps) {
+    const prevType = typeof prevProps.children
+    const nextType = typeof nextProps.children
+    assert(prevType === nextType)
+
+    // Childless node, skip
+    if (nextType === 'undefined') return
+
+    // Much like the initial step, handline text differently than elements.
+    if (nextType === 'string' || nextType === 'number') {
+      this._domNode.textContent = nextProps.children
+    } else {
+      this.updateChildren(nextProps.children)
     }
   }
 }

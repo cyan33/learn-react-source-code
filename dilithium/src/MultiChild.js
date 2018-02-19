@@ -26,6 +26,10 @@ class MultiChild {
 
     return childrenNodes
   }
+
+  updateChildren(children) {
+    
+  }
 }
 
 module.exports = MultiChild

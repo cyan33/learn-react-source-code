@@ -40,6 +40,12 @@ function insertAfter(node, child, afterChild) {
   )
 }
 
+function replaceNode(prevNode, newNode) {
+  const parentNode = prevNode.parentNode
+  empty(parentNode)
+  parentNode.appendChild(newNode)
+}
+
 module.exports = {
   empty,
   setProperty,
@@ -47,5 +53,6 @@ module.exports = {
   appendChildren,
   removeChild,
   insertAfter,
-  updateStyles
+  updateStyles,
+  replaceNode,
 }
