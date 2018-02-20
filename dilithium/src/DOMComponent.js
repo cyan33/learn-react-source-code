@@ -88,7 +88,7 @@ class DOMComponent extends MultiChild {
     // Childless node, skip
     if (nextType === 'undefined') return
 
-    // Much like the initial step, handline text differently than elements.
+    // Much like the initial step in mounting, handle text differently than elements.
     if (nextType === 'string' || nextType === 'number') {
       this._domNode.textContent = nextProps.children
     } else {

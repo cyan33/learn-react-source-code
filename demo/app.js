@@ -4,12 +4,8 @@ class App extends Dilithium.Component {
   render() {
     return (
       <div>
-        <div>
-          <h1 style={{ color: 'red' }} >Heading 1</h1>
-          <SmallHeader />
-          <h2 style={{ color: 'yellow' }} >Heading 2</h2>
-        </div>
         <h3>Heading 3</h3>
+        <SmallHeader />
       </div>
     )
   }
