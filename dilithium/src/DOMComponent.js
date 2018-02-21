@@ -20,6 +20,10 @@ class DOMComponent extends MultiChild {
     return node
   }
 
+  unmountComponent() {
+    this.unmountChildren()
+  }
+
   receiveComponent(nextElement) {
     this.updateComponent(this._currentElement, nextElement)
   }

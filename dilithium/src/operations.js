@@ -9,16 +9,14 @@ const OPERATIONS = {
     return {
       type: UPDATE_TYPES.INSERT,
       content: node,
-      toIndex: component._mountIndex,
       afterNode: afterNode,
     }
   },
 
-  move(component, afterNode, toIndex) {
+  move(component, afterNode) {
     return {
       type: UPDATE_TYPES.MOVE,
       fromIndex: component._mountIndex,
-      toIndex: toIndex,
       afterNode: afterNode,
     }
   },

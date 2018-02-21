@@ -1,15 +1,14 @@
 const traverseAllChildren = require('./traverseAllChildren')
 const shouldUpdateComponent = require('./shouldUpdateComponent')
 const Reconciler = require('./Reconciler')
-const instantiateComponent = require('./instantiateComponent')
 
 function instantiateChild(childInstances, child, name) {
   // don't know wtf happened here, cannot resolve it at top level
   // hack it in
-  const initiateComponent = require('./instantiateComponent')
+  const instantiateComponent = require('./instantiateComponent')
 
   if (!childInstances[name]) {
-    childInstances[name] = initiateComponent(child)
+    childInstances[name] = instantiateComponent(child)
   }
 }
 
@@ -22,7 +21,7 @@ function instantiateChildren(children) {
 }
 
 function unmountChildren(renderedChildren) {
-  if (!children)  return
+  if (!renderedChildren)  return
 
   Object.keys(renderedChildren).forEach(childKey => {
     Reconciler.unmountComponent(renderedChildren[childKey])
@@ -35,13 +34,20 @@ function updateChildren(
   mountNodes,
   removedNodes
 ) {
+  // hack in the import function
+  const instantiateComponent = require('./instantiateComponent')
+
   // we use the index of the tree to track the updates of the component, like `0.0`
   Object.keys(nextChildren).forEach((childKey) => {
     const prevChildComponent = prevChildren[childKey]
     const prevElement = prevChildComponent && prevChildComponent._currentElement
     const nextElement = nextChildren[childKey]
 
-    // Update
+    // three scenarios:
+    // 1: the prev element exists and is of the same type as the next element
+    // 2: the prev element exists but not of the same type
+    // 3: the prev element doesn't exist
+
     if (prevElement && shouldUpdateComponent(prevElement, nextElement)) {
       // this will do the recursive update of the sub tree
       // and this line is basically the actual update
@@ -58,7 +64,7 @@ function updateChildren(
         Reconciler.unmountComponent(prevChildComponent)
       }
 
-      // instantiate the new child.
+      // instantiate the new child. (insert)
       const nextComponent = instantiateComponent(nextElement)
       nextChildren[childKey] = nextComponent
 
@@ -79,4 +85,5 @@ function updateChildren(
 module.exports = {
   instantiateChildren,
   unmountChildren,
+  updateChildren,
 }

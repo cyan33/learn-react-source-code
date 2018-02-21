@@ -2,6 +2,7 @@ const ChildReconciler = require('./ChildReconciler')
 const Reconciler = require('./Reconciler')
 const { UPDATE_TYPES, OPERATIONS } = require('./operations')
 const traverseAllChildren = require('./traverseAllChildren')
+const DOM = require('./DOM')
 
 function flattenChildren(children) {
   const flattenedChildren = {}
@@ -18,12 +19,12 @@ function processQueue(parentNode, updates) {
   updates.forEach(update => {
     switch (update.type) {
       case UPDATE_TYPES.INSERT:
-        DOM.insertChildAfter(parentNode, update.content, update.afterNode)
+        DOM.insertAfter(parentNode, update.content, update.afterNode)
         break
 
       case UPDATE_TYPES.MOVE:
         // this automatically removes and inserts the new child
-        DOM.insertChildAfter(
+        DOM.insertAfter(
           parentNode,
           parentNode.childNodes[fromIndex],
           update.afterNode
@@ -73,7 +74,9 @@ class MultiChild {
   }
 
   updateChildren(nextChildren) {
+    // component tree
     let prevRenderedChildren = this._renderedChildren
+    // element tree
     let nextRenderedChildren = flattenChildren(nextChildren)
     
     let mountNodes = []
@@ -92,7 +95,8 @@ class MultiChild {
     // inserted, and which are getting removed. Luckily, the removal list was
     // already determined by the ChildReconciler.
 
-    // We'll store a series of update operations here.
+    // We'll generate a series of update operations here based on the 
+    // bookmarks that we've made just now
     let updates = []
 
     let lastIndex = 0
@@ -105,15 +109,16 @@ class MultiChild {
 
       // mark this as an update if they are identical
       if (prevChild === nextChild) {
-        // We don't actually need to move if moving to a lower index. Other
-        // operations will ensure the end result is correct.
+        // We don't actually need to move if moving to a lower index. 
+        // Other operations will ensure the end result is correct.
         if (prevChild._mountIndex < lastIndex) {
-          updates.push(OPERATIONS.move(prevChild, lastPlacedNode, nextIndex))
+          updates.push(OPERATIONS.move(nextChild, lastPlacedNode))
         }
+
         lastIndex = Math.max(prevChild._mountIndex, lastIndex)
-        prevChild._mountIndex = nextIndex
+        nextChild._mountIndex = nextIndex
       } else {
-        // Otherwise we need to record an insertion. Removals will be handled below
+        // Otherwise we need to record an insertion.
         // First, if we have a prevChild then we know it's a removal.
         // We want to update lastIndex based on that.
         if (prevChild) {
@@ -124,13 +129,14 @@ class MultiChild {
         updates.push(
           OPERATIONS.insert(
             nextChild,
-            mountImages[nextMountIndex],
-            lastPlacedNode,
+            mountNodes[nextMountIndex],
+            lastPlacedNode
           )
         )
         nextMountIndex ++
       }
 
+      // keep track of lastPlacedNode
       lastPlacedNode = nextChild._domNode
     })
 

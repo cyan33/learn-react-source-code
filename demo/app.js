@@ -5,16 +5,29 @@ class App extends Dilithium.Component {
     return (
       <div>
         <h3>Heading 3</h3>
-        <SmallHeader />
+        <SmallHeaderWithState />
       </div>
     )
   }
 }
 
-class SmallHeader extends Dilithium.Component {
+class SmallHeaderWithState extends Dilithium.Component {
+  constructor() {
+    super()
+    this.state = { number: 0 }
+    setInterval(() => {
+      this.setState({
+        number: this.state.number + 1
+      })
+    }, 1000)
+  }
+
   render() {
     return (
-      <h5>SmallHeader</h5>
+      <div>
+        <h5>SmallHeader</h5>
+        { this.state.number }
+      </div>
     )
   }
 }
