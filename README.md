@@ -1,6 +1,6 @@
 # Learn React Source Code
 
-* [Day1 - Read the advanced guides of react](https://github.com/cyan33/learn-react-source-code-in-10-days/issues/1)
+* [Day1 - Guidance](blog/guidance.md)
 
 ## What Dilithium Hasn't Covered
 
@@ -24,6 +24,16 @@ As it is a simplest implementation of React, it leaves out a lot of features of 
 * perf tooling and optimizing
 * `PureComponents`
 * functional components
+
+## Run the Demo
+
+```sh
+> cd ./demo
+> npm install
+> npm run watch
+```
+
+Open the `index.html` manually.
 
 ## Disclaimers
 
