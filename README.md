@@ -1,6 +1,7 @@
 # Learn React Source Code
 
 * [Day1 - Guidance](blog/guidance.md)
+* [Day2 - Mounting, Part 1](blog/mounting.md)
 
 ## What Dilithium Hasn't Covered
 
