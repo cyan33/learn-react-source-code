@@ -24,10 +24,6 @@ class DOMComponent extends MultiChild {
     this.unmountChildren()
   }
 
-  receiveComponent(nextElement) {
-    this.updateComponent(this._currentElement, nextElement)
-  }
-
   updateComponent(prevElement, nextElement) {
     this._currentElement = nextElement
     this._updateNodeProperties(prevElement.props, nextElement.props)

@@ -14,7 +14,7 @@ function receiveComponent(component, nextElement) {
   const prevElement = component._currentElement
   if (prevElement === nextElement)  return
 
-  component.receiveComponent(nextElement)
+  component.updateComponent(component._currentElement, nextElement)
 }
 
 module.exports = {

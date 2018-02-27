@@ -72,11 +72,6 @@ class Component {
     }
   }
 
-  receiveComponent(nextElement) {
-    // the new element that the current component should update itself to
-    this.updateComponent(this._currentElement, nextElement)
-  }
-
   performUpdateIfNecessary() {
     // react uses a batch here, we are just gonna call it directly without delay
     this.updateComponent(this._currentElement, this._currentElement)
