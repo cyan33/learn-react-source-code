@@ -1,6 +1,8 @@
 # Day2 - Mounting
 
-在做好一定的预备知识的学习后，本篇我们只研究一个问题：**React 是如何把 Component 中的 JSX 映射到页面上真正的 DOM 节点的**。
+在做好一定的预备知识的学习后，本篇我们只研究一个问题：
+
+**React 是如何把 Component 中的 JSX 映射到页面上真正的 DOM 节点的**。
 
 ## 面向测试编程
 
@@ -131,7 +133,7 @@ function createElement(type, config, children) {
 }
 ```
 
-> Note
+> Note:
 > 暂时不支持函数式组件
 
 ## Element -> Component

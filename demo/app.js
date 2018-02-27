@@ -25,7 +25,10 @@ class SmallHeaderWithState extends Dilithium.Component {
   render() {
     return (
       <div>
-        <h5>SmallHeader</h5>
+        <div style={{ 
+          fontSize: '36px',
+          color: 'red'
+        }}>SmallHeader</div>
         { this.state.number }
       </div>
     )

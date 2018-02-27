@@ -36,8 +36,11 @@ Answer:
 除此之外，如果你还没有信心直接开始阅读源码，建议（按次序）阅读以下四篇官方的 React Advanced Guide。对于理解 React 的架构和一些重要概念很有帮助。
 
 [JSX in Depth](https://reactjs.org/docs/jsx-in-depth.html)
+
 [Implementation Details](https://reactjs.org/docs/implementation-notes.html)
+
 [Reconciliation](https://reactjs.org/docs/reconciliation.html)
+
 [Codebase Overview](https://reactjs.org/docs/codebase-overview.html)
 
 ## Ask yourself Before Move On

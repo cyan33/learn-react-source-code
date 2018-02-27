@@ -1,7 +1,8 @@
 # Learn React Source Code
 
 * [Day1 - Guidance](blog/guidance.md)
-* [Day2 - Mounting, Part 1](blog/mounting.md)
+* [Day2 - Mounting](blog/mounting.md)
+* [Day3 - Mounting - Contd](blog/mounting-contd.md)
 
 ## What Dilithium Hasn't Covered
 
@@ -38,10 +39,10 @@ Open the `index.html` manually.
 
 ## Disclaimers
 
-1. Most code of Dilithium you've seen in this repo is originally written by [@zpao](), but it's also slightly changed here.
+1. Most code of Dilithium you've seen in this repo is originally written by [@zpao](), but it's also slightly changed here. I'll keep digging some of the listed features and adding blog and source code on top of the current codebase.
 
 2. The diffing algorithm used in the Dilithium is the stack reconcilliation, not the new fiber architecture.
 
 ## Liscense
 
-MIT@Chang
+MIT[@Chang](github.com/cyan33)
