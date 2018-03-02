@@ -9,6 +9,11 @@
 
 ## What You'll Learn
 
+* How does React mount everything from JSX to actual DOM nodes
+* How does React update its element tree using the virtual DOM diff algorithm and map it to the actual DOM changes
+* What is a virtual DOM, the advantages, and how it fits in React
+* A better understanding of the core principles of React
+
 ## What Dilithium Hasn't Covered
 
 As it is a simplest implementation of React, it leaves out a lot of features of it. Below are something that it hasn't covered (This is originally shown in the React Rally talk by Paul in 2016):
