@@ -255,4 +255,10 @@ function updateChildren(
 
 就这样，通过 `ChildReconciler.updateChildren`，我们通过 diff 算法，得出了所有的需要 mount 的节点，和需要移除的节点，并分别储存在 `mountNodes` 和 `removedNodes` 里面。（注意这两个变量的数据结构是不一样的）
 
+最后，不妨思考一个问题，**到底什么是 Virtual DOM？**
+
+其实读完这两篇文章之后，你应该已经有答案了。无论是从一开始调用 `setState` 后组件内的 `updateComponent` 还是之后的 `updateChildren`，我们始终没有触碰到真正的 DOM 元素，而利用的是 React Element，或是我们之前生成的 Component hash tree。这也是为什么在这个系列博客的第一篇中，文章末尾提出的问题 `What is the advantage(s) of using the element tree`。因为操作 DOM 是很费资源和时间的，但是操作原生的 JS 对象就大大减少了消耗。
+
+所以所谓的 Virtual DOM，无非是**在 mounting 和 update 的过程中，将真正的 DOM 结构映射到了原生的 JS 对象（element tree 或 component tree），从而大大提高了 diff 的效率。**
+
 在下一节，也是最后一节中，我们会讲解怎样将 `mountNodes` 和 `removedNodes` 映射到 `updates`，并且遍历 `updates` 做真正的 DOM 更新。

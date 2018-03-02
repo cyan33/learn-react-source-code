@@ -3,8 +3,9 @@
 * [Day1 - Guidance](blog/guidance.md)
 * [Day2 - Mounting](blog/mounting.md)
 * [Day3 - Mounting - Contd](blog/mounting-contd.md)
-* [Day4 - Updating](blog/update.md)
-* [Day5 - Updating - Contd](blog/update-contd.md)
+* [Day4 - Updating - The Process Flow](blog/update.md)
+* [Day5 - Updating - Diff](blog/update-contd.md)
+* [Day6 - Updating - Real DOM Update](blog/update-dom.md)
 
 ## What Dilithium Hasn't Covered
 
