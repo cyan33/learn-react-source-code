@@ -45,6 +45,8 @@ Open the `index.html` manually.
 
 2. The diffing algorithm used in the Dilithium is the stack reconcilliation, not the new fiber architecture.
 
+3. The code snippets in the blogs are sometimes somewhat different from that in the codebase. This is for better readablity and a more smooth learning curve.
+
 ## Liscense
 
 MIT[@Chang](github.com/cyan33)

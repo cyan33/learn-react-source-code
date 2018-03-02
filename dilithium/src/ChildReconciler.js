@@ -70,15 +70,15 @@ function updateChildren(
 
       mountNodes.push(Reconciler.mountComponent(nextComponent))
     }
+  })
 
-    // last but not least, remove the old children which no longer exist
-    Object.keys(prevChildren).forEach((childKey) => {
-      if (!nextChildren.hasOwnProperty(childKey)) {
-        const prevChildComponent = prevChildren[childKey]
-        removedNodes[childKey] = prevChildComponent
-        Reconciler.unmountComponent(prevChildComponent)
-      }
-    })
+  // last but not least, remove the old children which no longer exist
+  Object.keys(prevChildren).forEach((childKey) => {
+    if (!nextChildren.hasOwnProperty(childKey)) {
+      const prevChildComponent = prevChildren[childKey]
+      removedNodes[childKey] = prevChildComponent
+      Reconciler.unmountComponent(prevChildComponent)
+    }
   })
 }
 
