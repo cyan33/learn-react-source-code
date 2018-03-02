@@ -5,7 +5,7 @@ const UPDATE_TYPES = {
 }
 
 const OPERATIONS = {
-  insert(component, node, afterNode) {
+  insert(node, afterNode) {
     return {
       type: UPDATE_TYPES.INSERT,
       content: node,
@@ -21,10 +21,9 @@ const OPERATIONS = {
     }
   },
 
-  remove(component, node) {
+  remove(node) {
     return {
       type: UPDATE_TYPES.REMOVE,
-      fromIndex: component._mountIndex,
       fromNode: node,
     }
   }

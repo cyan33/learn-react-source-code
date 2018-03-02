@@ -26,7 +26,7 @@ function processQueue(parentNode, updates) {
         // this automatically removes and inserts the new child
         DOM.insertAfter(
           parentNode,
-          parentNode.childNodes[fromIndex],
+          update.content,
           update.afterNode
         )
         break
@@ -88,8 +88,6 @@ class MultiChild {
       mountNodes,
       removedNodes
     )
-    // the core of the react virtual DOM diff algorithm goes here
-
     // We'll compare the current set of children to the next set.
     // We need to determine what nodes are being moved around, which are being
     // inserted, and which are getting removed. Luckily, the removal list was
@@ -116,7 +114,7 @@ class MultiChild {
         }
 
         lastIndex = Math.max(prevChild._mountIndex, lastIndex)
-        nextChild._mountIndex = nextIndex
+        prevChild._mountIndex = nextIndex
       } else {
         // Otherwise we need to record an insertion.
         // First, if we have a prevChild then we know it's a removal.
@@ -128,7 +126,6 @@ class MultiChild {
         nextChild._mountIndex = nextIndex
         updates.push(
           OPERATIONS.insert(
-            nextChild,
             mountNodes[nextMountIndex],
             lastPlacedNode
           )
@@ -143,10 +140,7 @@ class MultiChild {
     // enque the removal the non-exsiting nodes
     Object.keys(removedNodes).forEach((childKey) =>  {
       updates.push(
-        OPERATIONS.remove(
-          prevRenderedChildren[childKey],
-          removedNodes[childKey]
-        )
+        OPERATIONS.remove(removedNodes[childKey])
       )
     })
 

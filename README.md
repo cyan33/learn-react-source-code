@@ -7,6 +7,8 @@
 * [Day5 - Updating - Diff](blog/update-contd.md)
 * [Day6 - Updating - Real DOM Update](blog/update-dom.md)
 
+## What You'll Learn
+
 ## What Dilithium Hasn't Covered
 
 As it is a simplest implementation of React, it leaves out a lot of features of it. Below are something that it hasn't covered (This is originally shown in the React Rally talk by Paul in 2016):
@@ -42,7 +44,7 @@ Open the `index.html` manually.
 
 ## Disclaimers
 
-1. Most code of Dilithium you've seen in this repo is originally written by [@zpao](), but it's also slightly changed here. I'll keep digging some of the listed features and adding blog and source code on top of the current codebase.
+1. Most code of Dilithium you've seen in this repo is originally written by [@zpao](https://github.com/zpao), at [building-react-from-scratch](https://github.com/zpao/building-react-from-scratch), but it's also slightly changed here. I'll keep digging some of the listed features and adding blog and source code on top of the current codebase.
 
 2. The diffing algorithm used in the Dilithium is the stack reconcilliation, not the new fiber architecture.
 

@@ -253,6 +253,8 @@ function updateChildren(
 
 最后，由于我们遍历的是 `nextChildren`，接下来还需要便利一下 `prevChildren`，如果 `prevElement` 的 key 不存在对应的 `nextElement`，说明这个节点在这次 update 中被删除了。我们将其加入 `removedNodes`。
 
+> 值得注意的是，`nextChildren` 从最初的 value 类型为 element 的 hash tree，通过 `nextChildren[childKey] = prevChildComponent` 亦或是 `instantiateComponent` 转化成了 value 类型为 component 的 hash tree。
+
 就这样，通过 `ChildReconciler.updateChildren`，我们通过 diff 算法，得出了所有的需要 mount 的节点，和需要移除的节点，并分别储存在 `mountNodes` 和 `removedNodes` 里面。（注意这两个变量的数据结构是不一样的）
 
 最后，不妨思考一个问题，**到底什么是 Virtual DOM？**
