@@ -174,4 +174,6 @@ _createInitialDOMChildren(props) {
 [MultiChild.js](../dilithium/src/MultiChild.js)
 [traverseAllChildren.js](../dilithium/src/traverAllChildren.js)
 
+> 不用担心，在接下来的 update 中我们会讲到这几个函数和方法。
+
 在下篇中我们会讲解由 React 是怎么实现 `setState`，以及其引发的一系列更新操作的。

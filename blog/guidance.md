@@ -22,7 +22,7 @@ Answer:
 
 其中，children 的数据结构是 Element 的数组，或者单个 Element。由此，Element 的数据结构满足了递归的需要。
 
-- **Component** 在 React 中，Component 有几种类型：
+- **Component** 是我们最常写的“组件”，有以下几种类型：
   - DOMComponent: `div, span, ul` 等
   - CompositeComponent: 复合组件，又分为 functional component 和 class component
   - TextComponent: number or string
@@ -33,7 +33,7 @@ Answer:
 
 在解决这个问题之后，遇到 React 代码里的函数名和参数中带有 "element", "component" 的，一定要自动条件反射到对应的概念，比如说 `instantiateComponent`, `mountComponent`，`createElement`，等等。
 
-除此之外，如果你还没有信心直接开始阅读源码，建议（按次序）阅读以下四篇官方的 React Advanced Guide。对于理解 React 的架构和一些重要概念很有帮助。
+除此之外，如果你还没有信心直接开始阅读源码，建议（按次序）阅读以下三篇官方的 React Advanced Guide。对于理解 React 的架构和一些重要概念很有帮助。
 
 [JSX in Depth](https://reactjs.org/docs/jsx-in-depth.html)
 
@@ -41,16 +41,11 @@ Answer:
 
 [Reconciliation](https://reactjs.org/docs/reconciliation.html)
 
-[Codebase Overview](https://reactjs.org/docs/codebase-overview.html)
-
 ## Ask yourself Before Move On
 
 在开始之前，为了检查一下自己的学习成果，不妨问一下自己这几个问题：
 
-- How is the code organized in the React codebase
-- What are `react` and `react-dom` responsible for, respectively
-- What is the difference between components, elements, instances in React:
-- How is React different from the traditional class-instance based composition
+- What is the difference between components, elements, instances in React
 - How does React use the element tree, instead of instances to compose the DOM structure
 - What is the advantage(s) of using the element tree
 - How does the React recursively work out a final DOM tree from a mixture of DOM components and React components during the render process
