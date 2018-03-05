@@ -25,7 +25,7 @@ updateChildren(nextChildren) {
 
 我们通过 `ChildReconciler.updateChildren`，mutate 修改了 `nextRenderedChildren`, `mountNodes` 和 `removedNodes`。在后两个变量中，分别储存着 diff 后**需要新插入的元素和需要被移除的元素**。
 
-## Create the `OPERATION` Object
+## Create the `OPERATIONS` Object
 
 接下来，我们要根据这两个变量，构建 `updates`。但是在此之前，我们先对 `updates` 的数据结构做好约定。由于最终我们要根据 `updates` 进行真正的 DOM 操作，所以其中必然包含了每个 DOM 操作需要的全部信息。所以在这里我们写了这样一个 helper function，用来生成每一个 DOM 操作的更新信息：
 
@@ -159,7 +159,7 @@ updateChildren(nextChildren) {
 
 1. 首先我们看到，只有在 `prevChild._mountIndex < lastIndex` 也就是将更新过后的 `prevChild` 移动到一个*更高*的索引的时候，我们才 push 一个 move 操作。而当将其 move 到一个*更低*索引的时候，我们可以置之不顾。为什么？因为后续的操作会将一些节点删除或者移动，最终结果是该节点自动往更低索引处走了。
 
-1. 用 `lastIndex` 来记录**上一个 `prevChild` 的 `mountIndex`**，这个变量的唯一用处是比对**当前的 `prevChild` 是在相对往哪里移动**，如果 `prevChild._mountIndex < lastIndex` 说明当前的节点在当前的 update 中应该往**下（高索引处）**移动。
+1. 用 `lastIndex` 来记录**上一个 `prevChild` 的 `mountIndex`**，这个变量的唯一用处是比对**当前的 `prevChild` 是在相对往哪里移动**，如果 `prevChild._mountIndex < lastIndex` 说明当前的节点在当前的 update 中应该往 **下（高索引处）** 移动。
 
 1. 用 `lastPlacedNode` 来记录上一个被放置的节点。用来作为 `insertAfter` 的第三个参数。
 
