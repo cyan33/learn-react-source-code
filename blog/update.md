@@ -16,7 +16,7 @@ React 中组件的更新大致有两种，第一种是由于单向数据流传�
 class Component {
   // ...
   setState(partialState) {
-    this._pendingState = Object.assign({}, this.props, partialState)
+    this._pendingState = Object.assign({}, this.state, partialState)
     this.updateComponent(this._currentElement, this._currentElement)
   }
 
@@ -63,7 +63,7 @@ updateComponent(prevElement, nextElement) {
 
 接着，我们重新设置当前 component instance 的 `props` 和 `state`。由于 React 组件就是 `(props, state) => element` 的一个函数映射，所以此时我们通过 `render` 得出了新的 element。
 
-接下来我们需要正式进入通过对边 `prevElement` 和 `nextElement` 尽兴更新的环节。在 [Reconciliation](https://reactjs.org/docs/reconciliation.html) 中，我们了解到，现有的 [Tree Diff Algorithm](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) 的复杂度是 O(n^3)，而 React 基于两个假设得出了一个 O(n) 的 Diff 算法，也就是我们所说的 Virtual DOM Diff Algorithm。
+接下来我们需要正式进入通过对边 `prevElement` 和 `nextElement` 进行  更新的环节。在 [Reconciliation](https://reactjs.org/docs/reconciliation.html) 中，我们了解到，现有的 [Tree Diff Algorithm](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) 的复杂度是 O(n^3)，而 React 基于两个假设得出了一个 O(n) 的 Diff 算法，也就是我们所说的 Virtual DOM Diff Algorithm。
 
 这两个假设是：
 
@@ -91,7 +91,7 @@ function receiveComponent(component, nextElement) {
 
 实际上就是调用了对应组件内部的 `updateComponent` 这个方法。
 
-需要额外注意的是，从最开始的 mounting，亦或是从 `setState` 开始的 updating，class component 内部的 `this._renderedComponent` 和 `this._currentElement` 是 **`render` 函数最外层的组件类型**，调用的 `updateComponent` 从 Class Component defer到了 DOM Component）。
+需要额外注意的是，从最开始的 mounting，亦或是从 `setState` 开始的 updating，class component 内部的 `this._renderedComponent` 和 `this._currentElement` 是 **`render` 函数最外层的组件类型**，调用的 `updateComponent` 从 Class Component defer到了 DOM Component）。
 
 举个例子：
 
