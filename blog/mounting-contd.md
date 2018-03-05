@@ -172,7 +172,7 @@ _createInitialDOMChildren(props) {
 
 [DOMComponent.js](../dilithium/src/DOMComponent.js)
 [MultiChild.js](../dilithium/src/MultiChild.js)
-[traverseAllChildren.js](../dilithium/src/traverAllChildren.js)
+[traverseAllChildren.js](../dilithium/src/traverseAllChildren.js)
 
 > 不用担心，在接下来的 update 中我们会讲到这几个函数和方法。
 
