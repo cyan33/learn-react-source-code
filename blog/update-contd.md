@@ -27,7 +27,7 @@ _updateDOMChildren(prevProps, nextProps) {
 children: ReactElement || Array<ReactElement>
 ```
 
-## 预备工作之 `traverAllChildren`
+## 预备工作之 `traverseAllChildren`
 
 在 Mount 部分中，我们谈到过，React 的 DOM Component 并不是简单的遍历子树并逐个 mount，而是通过 `traverseAllChildren` 生成了一个 hash tree，并保存到了 `this._renderedChildren` 这个属性中。
 
@@ -105,7 +105,7 @@ function instantiateChildren(children) {
 
 1. 一般情况下我们不提倡使用 mutate 方法，但是在 `traverAllChildren` 这个函数里我们看出它直接利用 callback 修改了参数 `traverseContext`，也就是 `childInstances`。也正因为如此，我们生成了所谓的 hash tree。
 1. `traverseAllChildren` 中的 `nameSoFar` 正是 hash tree 中的每个 Component 的 key。
-1. 注意 `traverseAllChildren` 并不会无限地递归到 leaf node，而只是**一层**的遍历。只要当前 child 是**单个元素（即使它是一个 wrapper）**就不会再往里递归。
+1. 注意 `traverseAllChildren` 并不会无限地递归到 leaf node，而只是**一层**的遍历。只要当前 child 是 **单个元素（即使它是一个 wrapper）**就不会再往里递归。
 
 [comment]: <> (Explain this in detail later)
 
@@ -172,7 +172,7 @@ updateChildren(nextChildren) {
 }
 ```
 
-`this._renderedChildren` 中保存着我们之前 mounting 中生成的 Component hash tree。但是 `nextChildren` 仍然是一个元素类型为 element 的数组。为了数据结构的一直，我们首先也需要对它进行 traverse 生成 hash tree：
+`this._renderedChildren` 中保存着我们之前 mounting 中生成的 Component hash tree。但是 `nextChildren` 仍然是一个元素类型为 element 的数组。为了数据结构的一致，我们首先也需要对它进行 traverse 生成 hash tree：
 
 ```js
 function flattenChildren(children) {
@@ -188,7 +188,7 @@ function flattenChildren(children) {
 }
 ```
 
-注意到我们此生生成的 `nextRenderedChildren` 是一个 value 类型为 element 的 hash tree。而 `prevRenderedChildren` 的 value 类型为 component。
+注意到我们此处生成的 `nextRenderedChildren` 是一个 value 类型为 element 的 hash tree。而 `prevRenderedChildren` 的 value 类型为 component。
 
 在“统一”了数据结构后，我们增加了一个中间件，`ChildReconciler`，专门用来处理 Children 的操作。接下来我们看一下其中的 `updateChildren` 这个方法。正如我们刚才说的吗，它的作用是得出**需要 insert 的新节点，需要 remove 的节点，和需要调整顺序的节点**。并把它们保存在数组或对象这样的数据结构里。
 
@@ -251,7 +251,7 @@ function updateChildren(
 1. `prevElement` 存在但是类型已经发生变化
 1. `prevElement` 不存在，说明需要插入一个新的 `nextElement`
 
-最后，由于我们遍历的是 `nextChildren`，接下来还需要便利一下 `prevChildren`，如果 `prevElement` 的 key 不存在对应的 `nextElement`，说明这个节点在这次 update 中被删除了。我们将其加入 `removedNodes`。
+最后，由于我们遍历的是 `nextChildren`，接下来还需要遍历一下 `prevChildren`，如果 `prevElement` 的 key 不存在对应的 `nextElement`，说明这个节点在这次 update 中被删除了。我们将其加入 `removedNodes`。
 
 > 值得注意的是，`nextChildren` 从最初的 value 类型为 element 的 hash tree，通过 `nextChildren[childKey] = prevChildComponent` 亦或是 `instantiateComponent` 转化成了 value 类型为 component 的 hash tree。
 
