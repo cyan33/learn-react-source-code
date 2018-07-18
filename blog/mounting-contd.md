@@ -28,10 +28,12 @@ mountComponent() {
 ```jsx
   <div
     className="container"
+    {% raw %}
     style={{
       color: 'red',
       fontSize: '24px'
     }}
+    {% endraw %}
   >
     Hello World
   </div>

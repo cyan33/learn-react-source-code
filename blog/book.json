@@ -1,0 +1,69 @@
+{
+    "title": "Learn React Source Code",
+    "author": "cyan33",
+    "links": {
+        "sidebar": {
+            "Learn React Source Code": "https://github.com/cyan33/learn-react-source-code"
+        }
+    },
+    "plugins": [
+        "-lunr",
+        "-search",
+        "search-plus",
+        "splitter",
+        "anchors",
+        "anchor-navigation-ex",
+        "copy-code-button",
+        "expandable-chapters",
+        "theme-darkblue",
+        "theme-comscore",
+        "tbfed-pagefooter",
+        "prism",
+        "-highlight",
+        "github-buttons",
+        "edit-link",
+        "disqus"
+    ],
+    "pluginsConfig": {
+        "tbfed-pagefooter": {
+            "modify_label": "最近更新：",
+            "modify_format": "YYYY-MM-DD HH:mm"
+        },
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-tomorrow.css"
+            ]
+        },
+        "github-buttons": {
+            "buttons": [{
+                "user": "cyan33",
+                "repo": "learn-react-source-code",
+                "type": "star",
+                "size": "small",
+                "count": true
+            }]
+        },
+        "edit-link": {
+            "base": "https://github.com/cyan33/learn-react-source-code/edit/master/blog",
+            "label": "Edit This Page"
+        },
+        "sharing": {
+            "facebook": false,
+            "twitter": true,
+            "weibo": true
+        },
+        "disqus": {
+            "shortName": "gitbook-8"
+        },
+        "anchor-navigation-ex": {
+            "multipleH1": false
+        }
+    },
+    "ignores": [
+        ".*",
+	"build",
+        "_book",
+        "gitbook",
+        "node_modules"
+    ]
+}
