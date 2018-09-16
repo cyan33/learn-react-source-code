@@ -45,7 +45,7 @@ updateComponent(prevElement, nextElement) {
   const prevRenderedElement = this._renderedComponent._currentElement
   const nextRenderedElement = this.render()
 
-  if (shouldUpdateComponent(prevRenderedComponent, nextRenderedComponent)) {
+  if (shouldUpdateComponent(prevRenderedElement, nextRenderedElement)) {
     Reconciler.receiveComponent(this._renderedComponent, nextElement)
   } else {
     // remount everything under this node
