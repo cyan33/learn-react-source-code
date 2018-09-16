@@ -45,13 +45,13 @@ updateComponent(prevElement, nextElement) {
   const prevRenderedElement = this._renderedComponent._currentElement
   const nextRenderedElement = this.render()
 
-  if (shouldUpdateComponent(prevRenderedComponent, nextRenderedComponent)) {
+  if (shouldUpdateComponent(prevRenderedElement, nextRenderedElement)) {
     Reconciler.receiveComponent(this._renderedComponent, nextElement)
   } else {
     // remount everything under this node
     Reconciler.unmountComponent(this._renderedComponent)
 
-    const nextRenderedComponent = instantiateComponent(nextRenderedComponent)
+    const nextRenderedComponent = instantiateComponent(nextElement)
     this._renderedNode = Reconciler.mountComponent(nextRenderedComponent)
 
     DOM.replaceNode(this._renderedComponent._domNode, this._renderedNode)
