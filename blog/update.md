@@ -51,7 +51,7 @@ updateComponent(prevElement, nextElement) {
     // remount everything under this node
     Reconciler.unmountComponent(this._renderedComponent)
 
-    const nextRenderedComponent = instantiateComponent(nextRenderedComponent)
+    const nextRenderedComponent = instantiateComponent(nextElement)
     this._renderedNode = Reconciler.mountComponent(nextRenderedComponent)
 
     DOM.replaceNode(this._renderedComponent._domNode, this._renderedNode)
