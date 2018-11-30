@@ -83,7 +83,7 @@ function traverseAllChildrenImpl(
 }
 ```
 
-这个函数乍一看比较复杂，但是花时间分析一下，就会发现其实还是很简洁的。在此之前我们先看一下这个函数式怎么被调用用的。
+这个函数乍一看比较复杂，但是花时间分析一下，就会发现其实还是很简洁的。在此之前我们先看一下这个函数是怎么被调用的。
 
 比如说在 mounting 阶段我们记得有一个步骤是在 `mountChildren` 中调用 `instantiateChildren`，这个方法是这样的：
 
@@ -105,7 +105,7 @@ function instantiateChildren(children) {
 
 1. 一般情况下我们不提倡使用 mutate 方法，但是在 `traverAllChildren` 这个函数里我们看出它直接利用 callback 修改了参数 `traverseContext`，也就是 `childInstances`。也正因为如此，我们生成了所谓的 hash tree。
 1. `traverseAllChildren` 中的 `nameSoFar` 正是 hash tree 中的每个 Component 的 key。
-1. 注意 `traverseAllChildren` 并不会无限地递归到 leaf node，而只是**一层**的遍历。只要当前 child 是 **单个元素（即使它是一个 wrapper）**就不会再往里递归。
+1. 注意 `traverseAllChildren` 并不会无限地递归到 leaf node，而只是**一层**的遍历。只要当前 child 是 **单个元素（即使它是一个 wrapper）** 就不会再往里递归。
 
 [comment]: <> (Explain this in detail later)
 
